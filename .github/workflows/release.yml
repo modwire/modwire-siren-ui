@@ -1,0 +1,73 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  verify:
+    uses: ./.github/workflows/ci.yml
+
+  build:
+    name: Build npm package
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.11.1
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: "@modwire"
+      - name: Set up npm
+        run: npm install --global npm@11.11.0
+      - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+        run: npm ci
+      - name: Verify release version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: test "v$(node --print "require('./package.json').version")" = "$RELEASE_TAG"
+      - name: Verify package
+        run: npm run verify
+      - name: Build release tarball
+        run: npm pack --pack-destination dist
+      - name: Upload release tarball
+        uses: actions/upload-artifact@v7
+        with:
+          name: npm-package
+          path: dist/*.tgz
+          if-no-files-found: error
+
+  publish-github-packages:
+    name: Publish to GitHub Packages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.11.1
+          registry-url: https://npm.pkg.github.com
+          scope: "@modwire"
+      - name: Set up npm
+        run: npm install --global npm@11.11.0
+      - name: Download release tarball
+        uses: actions/download-artifact@v8
+        with:
+          name: npm-package
+          path: dist
+      - name: Publish npm package
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+        run: npm publish ./dist/*.tgz --registry=https://npm.pkg.github.com

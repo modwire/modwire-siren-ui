@@ -1,0 +1,4 @@
+coverage/
+dist/
+package-lock.json
+src/profile/profile.schema.json

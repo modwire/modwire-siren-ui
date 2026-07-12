@@ -1,0 +1,16 @@
+export { UiDocument } from "../domain/document/document";
+export { UiDiagnostic } from "../domain/diagnostics/diagnostic";
+export { UiDiagnostics } from "../domain/diagnostics/collection";
+export { UiNode } from "../domain/nodes/base";
+export { UiNodeIdentity } from "../domain/nodes/identity";
+export { UiEntityNode } from "../domain/nodes/entity";
+export { UiReferenceNode } from "../domain/nodes/reference";
+export { UiRegionNode } from "../domain/nodes/region";
+export { UiPropertyNode } from "../domain/nodes/property";
+export { UiRelationNode } from "../domain/nodes/relation";
+export { UiActionNode } from "../domain/nodes/action";
+export { UiFieldNode } from "../domain/nodes/field";
+export { ComponentResolution } from "../domain/component/resolution";
+export { ProfileContext } from "../domain/profile/context";
+export { UiValue } from "../domain/source/value";
+export type { UiNodeVisitor } from "../domain/nodes/visitor";

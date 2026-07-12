@@ -1,0 +1,79 @@
+{
+  "name": "@modwire/siren-ui",
+  "version": "0.1.0",
+  "description": "Framework-neutral semantic UI engine for Modwire Siren.",
+  "license": "MIT",
+  "packageManager": "npm@11.11.0",
+  "author": {
+    "name": "Tomasz Szpak",
+    "url": "https://szpak.dev"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "files": [
+    "dist",
+    "ARCHITECTURE.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "./dist/api.js",
+  "types": "./dist/api.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/api.d.ts",
+      "import": "./dist/api.js"
+    },
+    "./commands": {
+      "types": "./dist/commands.d.ts",
+      "import": "./dist/commands.js"
+    },
+    "./model": {
+      "types": "./dist/model.d.ts",
+      "import": "./dist/model.js"
+    },
+    "./extensions": {
+      "types": "./dist/extensions.d.ts",
+      "import": "./dist/extensions.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/modwire/modwire-siren-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/modwire/modwire-siren-ui/issues"
+  },
+  "homepage": "https://github.com/modwire/modwire-siren-ui#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@modwire/siren-client": "0.1.0"
+  },
+  "scripts": {
+    "build": "tsdown src/public/api.ts src/public/commands.ts src/public/model.ts src/public/extensions.ts --format esm --platform neutral --dts --clean --sourcemap --target es2022",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "package:check": "npm run build && publint && attw --pack . --profile esm-only && tsx scripts/verify-package.ts",
+    "test": "npm run build && vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "verify": "npm run format:check && npm run lint && npm run typecheck && tsx scripts/verify-lock.ts && npm run test && npm run package:check"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@eslint/js": "10.0.1",
+    "@types/node": "22.20.1",
+    "eslint": "10.7.0",
+    "prettier": "3.9.5",
+    "publint": "0.3.21",
+    "tsx": "4.23.0",
+    "tsdown": "0.22.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.63.0",
+    "vitest": "4.1.10"
+  }
+}

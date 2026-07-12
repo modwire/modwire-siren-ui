@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowImportingTsExtensions": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "noUncheckedSideEffectImports": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "ES2022",
+    "types": ["node"],
+    "useUnknownInCatchVariables": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "eslint.config.js",
+    "scripts/**/*.ts",
+    "src/**/*.ts",
+    "tests/**/*.ts",
+    "vitest.config.ts"
+  ]
+}

@@ -1,0 +1,36 @@
+export class ProfileMember {
+  static readonly presentation = "presentation";
+  static readonly properties = "properties";
+  static readonly relations = "relations";
+  static readonly actions = "actions";
+  static readonly layout = "layout";
+  static readonly regions = "regions";
+  static readonly role = "role";
+  static readonly language = "language";
+  static readonly label = "label";
+  static readonly message = "message";
+  static readonly format = "format";
+  static readonly importance = "importance";
+  static readonly sensitive = "sensitive";
+  static readonly order = "order";
+  static readonly widget = "widget";
+  static readonly visibleWhen = "visibleWhen";
+  static readonly enabledWhen = "enabledWhen";
+  static readonly fields = "fields";
+  static readonly intent = "intent";
+  static readonly placement = "placement";
+  static readonly confirmation = "confirmation";
+  static readonly required = "required";
+  static readonly acknowledgement = "acknowledgement";
+  static readonly result = "result";
+  static readonly mode = "mode";
+  static readonly loading = "loading";
+  static readonly cardinality = "cardinality";
+  static readonly content = "content";
+  static readonly status = "status";
+  static readonly id = "id";
+  static readonly kind = "kind";
+  static readonly path = "path";
+  static readonly operator = "operator";
+  static readonly value = "value";
+}
