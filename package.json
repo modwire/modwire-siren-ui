@@ -61,7 +61,7 @@
     "package:check": "npm run build && publint && attw --pack . --profile esm-only && tsx scripts/verify-package.ts",
     "test": "npm run build && vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "verify": "npm run format:check && npm run lint && npm run typecheck && tsx scripts/verify-lock.ts && npm run test && npm run package:check"
+    "verify": "npm run build && npm run format:check && npm run lint && npm run typecheck && tsx scripts/verify-lock.ts && npm run test && npm run package:check"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
