@@ -1,6 +1,6 @@
 {
   "name": "@modwire/siren-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Framework-neutral semantic UI engine for Modwire Siren.",
   "license": "MIT",
   "packageManager": "npm@11.11.0",
