@@ -31,11 +31,11 @@ class LockVerifier {
     };
     assert.equal(
       parsed.packages[""]?.dependencies?.["@modwire/siren-client"],
-      "0.1.0",
+      "1.0.0",
     );
     assert.equal(
       parsed.packages["node_modules/@modwire/siren-client"]?.version,
-      "0.1.0",
+      "1.0.0",
     );
   }
 }

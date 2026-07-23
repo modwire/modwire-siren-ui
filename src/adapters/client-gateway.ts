@@ -27,15 +27,21 @@ export class ClientGateway implements SirenGateway {
   ) {}
   async follow(
     document: SourceDocument,
+    entity: SourceEntity,
     relation: string,
   ): Promise<SirenExchange> {
+    const sourceDocument = this.document(document);
+    const sourceEntity = this.entity(entity);
     return new DocumentExchange(
       this.documents.adapt(
-        await this.client.follow(
-          this.document(document),
-          relation,
-          this.transport,
-        ),
+        sourceEntity === sourceDocument.root
+          ? await this.client.follow(sourceDocument, relation, this.transport)
+          : await this.client.followEntity(
+              sourceDocument,
+              sourceEntity,
+              relation,
+              this.transport,
+            ),
       ),
     );
   }
@@ -57,14 +63,21 @@ export class ClientGateway implements SirenGateway {
   ): Promise<SirenExchange> {
     const sourceDocument = this.document(document);
     const sourceEntity = this.entity(entity);
-    if (sourceEntity !== sourceDocument.root)
-      throw this.unsupported(ClientCapability.nestedActionExecution);
-    const result = await this.client.execute(
-      sourceDocument,
-      action,
-      this.values(values),
-      this.transport,
-    );
+    const result =
+      sourceEntity === sourceDocument.root
+        ? await this.client.execute(
+            sourceDocument,
+            action,
+            this.values(values),
+            this.transport,
+          )
+        : await this.client.executeEntity(
+            sourceDocument,
+            sourceEntity,
+            action,
+            this.values(values),
+            this.transport,
+          );
     return result.kind === ExchangeKind.document
       ? new DocumentExchange(this.documents.adapt(result.document))
       : new EmptyExchange();

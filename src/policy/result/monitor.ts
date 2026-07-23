@@ -37,7 +37,7 @@ export class MonitorResult implements ActionResultStrategy {
         );
       await context.scheduler.wait(this.delay, context.cancellation);
       document = (
-        await context.gateway.follow(document, relation)
+        await context.gateway.follow(document, document.root, relation)
       ).requireDocument();
     }
     throw new SirenUiError(

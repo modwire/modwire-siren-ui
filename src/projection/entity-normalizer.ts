@@ -131,6 +131,7 @@ export class EntityNormalizer {
       relationNodes.push(
         this.relations.create(
           identity,
+          source,
           relation,
           this.reader.object(relationMetadata, relation),
           sources,

@@ -20,6 +20,7 @@ export class RelationFactory {
   ) {}
   create(
     parent: UiNodeIdentity,
+    owner: SourceEntity,
     relation: string,
     metadata: UiValue,
     sources: readonly SourceEntity[],
@@ -37,6 +38,7 @@ export class RelationFactory {
     );
     return new UiRelationNode(
       identity,
+      owner,
       relation,
       this.labels.resolve(
         relation,

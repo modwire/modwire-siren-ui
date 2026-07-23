@@ -1,6 +1,6 @@
 {
   "name": "@modwire/siren-ui",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Framework-neutral semantic UI engine for Modwire Siren.",
   "license": "MIT",
   "packageManager": "npm@11.11.0",
@@ -51,7 +51,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@modwire/siren-client": "0.1.0"
+    "@modwire/siren-client": "1.0.0"
   },
   "scripts": {
     "build": "tsdown src/public/api.ts src/public/commands.ts src/public/model.ts src/public/extensions.ts --format esm --platform neutral --dts --clean --sourcemap --target es2022",
