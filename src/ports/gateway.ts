@@ -4,7 +4,11 @@ import type { SourceEntity } from "../domain/source/entity";
 import type { UiValue } from "../domain/source/value";
 
 export interface SirenGateway {
-  follow(document: SourceDocument, relation: string): Promise<SirenExchange>;
+  follow(
+    document: SourceDocument,
+    entity: SourceEntity,
+    relation: string,
+  ): Promise<SirenExchange>;
   resolve(
     document: SourceDocument,
     entity: SourceEntity,

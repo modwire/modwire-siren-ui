@@ -174,6 +174,7 @@ export class UiSession implements CommandVisitor<Promise<UiSnapshot>> {
       const document = (
         await this.gateway.follow(
           this.current.document.source,
+          relation.owner,
           relation.relation,
         )
       ).requireDocument();

@@ -10,7 +10,7 @@ export class RefreshResult implements ActionResultStrategy {
     for (const relation of context.action.resultRelations) {
       context.cancellation.throwIfCancelled();
       document = (
-        await context.gateway.follow(document, relation)
+        await context.gateway.follow(document, document.root, relation)
       ).requireDocument();
     }
     return document;

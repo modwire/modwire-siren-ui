@@ -18,8 +18,9 @@ export class NavigateResult implements ActionResultStrategy {
         SirenUiCode.actionResult,
         "Navigate result requires a relation",
       );
+    const document = context.exchange.requireDocument();
     return (
-      await context.gateway.follow(context.exchange.requireDocument(), relation)
+      await context.gateway.follow(document, document.root, relation)
     ).requireDocument();
   }
 }

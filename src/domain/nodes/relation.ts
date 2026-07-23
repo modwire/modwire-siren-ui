@@ -16,6 +16,7 @@ export class UiRelationNode extends UiNode {
 
   constructor(
     identity: UiNodeIdentity,
+    readonly owner: SourceEntity,
     readonly relation: string,
     readonly label: string,
     readonly role: string,
